@@ -2,15 +2,14 @@ package handler
 
 import (
 	"fmt"
-	"myapp/db"
 	"myapp/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-func UserHandler(c *gin.Context) {
-	rows, err := db.QueryDB(`
+func (h *CashbackReportHandler) UserHandler(c *gin.Context) {
+	rows, err := h.Service.DB.Query(`
         SELECT id, name, login, hash, phone, active, is_superadmin, created_by, updated_by, created_at, updated_at, deleted_at, outlet_id, last_visit_date, language, can_login, owner_id, team_id, "order", salary_currency_id, salary, type
         FROM users
     `)
